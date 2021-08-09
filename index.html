@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Temperature Converter</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500&display=swap"
+            rel="stylesheet">
+        <style>
+        body{
+            background-color:#f5eec2;
+            font-family: 'Lora', serif;
+        }
+        #container{
+            text-align: center;
+            background-color: #416a59;
+            color: #ffffff;
+            height: 600px;
+            width: 1350px;
+            padding: 154px 0px 94px 0px;
+            margin: 60px 87px 25px 87px;
+            box-sizing: border-box;
+            display:flex;
+            /* justify-content:center; */
+            flex-direction:column;
+        }
+        #ins-con{
+            display:flex;
+            justify-content:center;
+        }
+        #title{
+            font-size: 36px;
+            font-weight: 500;
+            letter-spacing: 1.2px;
+        }
+        #box{
+            border: 0.3px solid white;
+            margin: 0px 16px;
+        }
+        .equal{
+            font-size: 32px;
+            position: absolute;
+            top: 291px;
+        }
+        input{
+            border: 0;
+            outline: 0;
+        }
+        #cel,#fah,#kel{
+            padding: 12px 45px;
+            text-align: center;
+            font-size: 24px;
+        }
+
+        .scale{
+            text-align: center;
+            font-size: 19px;
+            font-weight: 200;
+            letter-spacing: 1px;
+            margin: 0;
+            padding: 4px 0px;
+        }
+        #formula{
+            padding-right: 67.4%;
+            font-size: 18px;
+        }
+        #info{
+            padding-right: 65.6%;
+            font-size: 18px;
+            margin: 0;
+        }
+        #wish{
+            font-size: 23px;
+            padding-top: 8%;
+            font-family: inherit;
+        }
+        #copyright{
+            text-align: center;
+            font-size: 11px;
+            font-family: inherit;
+        }
+    </style>
+    </head>
+
+    <body>
+        <nav>
+            <div id="container">
+                <h2 id="title">Temperature Converter</h2>
+
+                <div id="ins-con">
+                    <!--=============== Celsius Scale Box ===============-->
+                    <div id="box">
+                        <input type="number" id="cel" value="0">
+                        <h3 class="scale">Celsius (°C)</h3>
+                    </div>
+                    <!-- <p class="equal">=</p> -->
+                    <!--=============== Fahrenheit Scale Box ============-->
+                    <div id="box">
+                        <input type="number" id="fah" value="32">
+                        <h3 class="scale">Fahrenheit (°F)</h3>
+                    </div>
+                    <!--=============== Kelvin Scale Box ================-->
+                    <div id="box">
+                        <input type="number" id="kel" value="273.15">
+                        <h3 class="scale">Kelvin (°K)</h3>
+                    </div>
+                </div>
+
+                <p id="formula">
+                    <span>Formula</span>:
+                    <span> <b>C</b></span>/5=(<span><b>F</b></span>-32)/9=(<span><b>K</b></span>-273.15)/5<br>
+                </p>
+                <p id="info">
+                    <span>Human body temperature:  98.6°<b>F</b> (37°<b>C</b>)</span>
+
+                </p>
+                <p id="wish">Feel better soon!</p>
+            </div>
+            <p id="copyright">Copyright © 2021 | All Rights Reserved by Tashin
+                Parvez </p>
+        </nav>
+
+        <!--=============== JavaScript ================-->
+        <script>
+                let cel = document.getElementById("cel");
+                let fah = document.getElementById("fah");
+                let kel = document.getElementById("kel");
+                
+                // =============== Celsius Scale Box =====================================
+                cel.addEventListener("input",function(){
+                    let c = this.value;
+                    let f = (c*9)/5+32;
+                    if(!Number.isInteger(f)){
+                        f = f.toFixed(2);
+                    }
+                    fah.value = f;
+                })
+
+                cel.addEventListener("input",function(){
+                    let c = Number(this.value);
+                    let k = c+273.15;
+                    if(!Number.isInteger(k)){
+                        k = k.toFixed(2);
+                    }
+                    kel.value = k;
+                })
+                
+                // =============== Fahrenheit Scale Box =====================================
+                fah.addEventListener("input",function(){
+                    let f = this.value;
+                    let c = (f-32)*5/9;
+                    if(!Number.isInteger(c)){
+                        c = c.toFixed(2);
+                    }
+                    cel.value = c;
+                })
+
+                fah.addEventListener("input",function(){
+                    let f = this.value;
+                    let k = ((f-32)*5/9)+273.15;
+                    if(!Number.isInteger(k)){
+                        k = k.toFixed(2);
+                    }
+                    kel.value = k;
+                })
+                
+                // =============== Kelvin Scale Box ==========================================
+            kel.addEventListener("input",function(){
+                let k = this.value;
+                let c = k-273.15;
+                if(!Number.isInteger(c)){
+                    c = c.toFixed(2);
+                }
+                cel.value = c;
+            })
+            
+            kel.addEventListener("input",function(){
+                let k = this.value;
+                let f = ((k-273.15)*(9/5))+32;
+                if(!Number.isInteger(f)){
+                    f = f.toFixed(2);
+                }
+                fah.value = f;
+            })
+            
+            </script>
+    </body>
+
+</html>
